@@ -1,3 +1,5 @@
+import numpy as np
+
 #parte 1
 
 nomeM="Mario Rossi"
@@ -38,3 +40,16 @@ Mario=cliente(nomeM,etaM,vipM)
 weekend_al_colosseo=viaggio(citta[0],costi[citta[0]],2)
 Mario_Roma=prenotazione(Mario,weekend_al_colosseo)
 #Mario_Roma.dettagli()
+
+# parte 3
+
+simulazione=np.random.randint(200,2001,100)
+#print("\nSimulazione di prenoptazioni:\n",simulazione)
+#print("\nMedia:\n",np.mean(simulazione))
+#print("\nMassimo e minimo:\n",np.max(simulazione),np.min(simulazione))
+#print("\nDeviazione standard:\n",np.std(simulazione))
+n=0
+for x in np.where(simulazione>np.mean(simulazione))[0]:
+    n+=1
+Prenotazioni_sopra_la_media=n/2
+#print(f"\nPrenotazioni sopra la media:\n{Prenotazioni_sopra_la_media}%")
