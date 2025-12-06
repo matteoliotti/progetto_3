@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 
 #parte 1
 
@@ -75,9 +76,9 @@ Andrea_Venezia=prenotazione(Andrea,vacanza_Venezia)
 
 df=pd.DataFrame({
     "Cliente":[nomeM,Paolo.nome,Marina.nome,Marta.nome,Andrea.nome],
-    "destinazione":citta,
+    "Destinazione":citta,
     "Prezzo":costi.values(),
-    "Giorno Partenza":["20-03-2018","18-09-2024","18-09-2024","23-12-2015","03-08-2026"],
+    "Giorno Partenza":pd.date_range("2018-03-20",periods=5,freq="m"),
     "Durata":[weekend_Roma.durata,settimana_Milano.durata,settimana_Napoli.durata,visita_Torino.durata,vacanza_Venezia.durata],
     "Incasso":[Mario_Roma.importo_finale(),Paolo_Milano.importo_finale(),Marina_Napoli.importo_finale(),Marta_Torino.importo_finale(),Andrea_Venezia.importo_finale()]
 })
@@ -87,6 +88,24 @@ n=0
 for x in df["Incasso"][:]:
     totale+=x
     n+=1
-df.sort_values("Incasso",ascending=False)
+#print(f"\nTotale ricavato:\n{totale}\nIn media:\n{totale/n}\nLe 3 destinazioni più vendute:\n{df.sort_values("Incasso",ascending=False).head(3)}")
 
-print(f"\nTotale ricavato:\n{totale}\nIn media:\n{totale/n}\nLe 3 destinazioni più vendute:\n{df.head(3)}")
+# parte 5
+
+print(df)
+base=plt.figure(figsize=(10,6))
+
+base.add_subplot(223)
+plt.bar(citta,df["Incasso"],0.5,color=["r","brown","g","yellow","b"])
+plt.ylabel("INCASSO",color="b")
+plt.title("INCASSO PER OGNI DESTINAZIONE",fontsize=9,color="r")
+
+base.add_subplot(211)
+plt.plot(df["Giorno Partenza"],df["Incasso"],marker=("s"))
+plt.ylabel("INCASSO",color="b")
+plt.title("INCASSI NEL TEMPO",color="r")
+
+base.add_subplot(224)
+plt.pie(df["Incasso"],labels=df["Destinazione"],autopct="%1.2f%%")
+plt.title("PERCENTUALE DI OGNI DESTINAZIONE",fontsize=9,color="r")
+plt.show()
