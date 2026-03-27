@@ -107,17 +107,18 @@ print(f"\nTotale ricavato da tutte le prenotazioni:\n{totale}\n\nIn media:\n{tot
 
 base=plt.figure(figsize=(8,6))
 
-base.add_subplot(414)
+base.add_subplot(131)
 plt.bar(citta,df["Incasso"],0.5,color=["b","orange","g","r","purple","brown","pink","gray"])
 plt.ylabel("INCASSO",color="b")
 plt.title("INCASSO PER OGNI DESTINAZIONE",fontsize=9,color="r")
 
-base.add_subplot(411)
+
+base.add_subplot(132)
 plt.plot(df["Giorno Partenza"],df["Incasso"],marker=("s"))
 plt.ylabel("INCASSO",color="b")
 plt.title("INCASSI NEL TEMPO",color="r")
 
-base.add_subplot(312)
+base.add_subplot(133)
 plt.pie(df["Incasso"],labels=df["Destinazione"],autopct="%1.0f%%")
 plt.title("PERCENTUALE DI OGNI DESTINAZIONE",fontsize=9,color="r")
 plt.show()
